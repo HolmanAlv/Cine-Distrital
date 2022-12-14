@@ -1,21 +1,23 @@
 package Model.Usuarios;
 
-public class User implements AbstractUser{
-    private String id;
-    private String name;
-    private String points;
-    private String role;
-    public User(String[] info) {
-    	try {
-    		Integer.valueOf(info[3]);
-    	}catch(Exception e){
-    		System.out.println(info[3]+" no es un numero de puntos valido");
-    	}
-    	this.id=info[0];
-    	this.name=info[1];
-    	this.role=info[2];
-    	this.points=info[3];
-    }
+public class User implements AbstractUser {
+	private String id;
+	private String name;
+	private String points;
+	private String role;
+
+	public User(String[] info) {
+		try {
+			Integer.valueOf(info[3]);
+		} catch (Exception e) {
+			System.out.println(info[3] + " no es un numero de puntos valido");
+		}
+		this.id = info[0];
+		this.name = info[1];
+		this.role = info[2];
+		this.points = info[3];
+	}
+
 	@Override
 	public String getid() {
 		// TODO Auto-generated method stub
@@ -28,8 +30,7 @@ public class User implements AbstractUser{
 		return name;
 	}
 
-
-	public int getpoints(){
+	public int getpoints() {
 		// TODO Metodo para obtener los puntos del usuario(como enteros)
 		return Integer.valueOf(points);
 	}
@@ -40,44 +41,44 @@ public class User implements AbstractUser{
 		return role;
 	}
 
-
 	public void addpoints(int a) {
 		// Metodo para sumar puntos al usuario
-		this.points=Integer.valueOf(points)+a+"";
+		this.points = Integer.valueOf(points) + a + "";
 	}
 
 	@Override
 	public void setname(String name) {
 		// TODO Auto-generated method stub
-		this.name=name;
+		this.name = name;
 	}
 
 	@Override
 	public void setrole(String role) {
 		// TODO Auto-generated method stub
-		this.role=role;
+		this.role = role;
 	}
 
 	@Override
 	public void setid(String id) {
 		// TODO Auto-generated method stub
-		this.id=id;
+		this.id = id;
 	}
-
 
 	public void substractpoints(int a) {
 		// TODO Auto-generated method stub
-		this.points=Integer.valueOf(points)-a+"";
+		this.points = Integer.valueOf(points) - a + "";
 	}
+
 	@Override
 	public String getP() {
 		// TODO Auto-generated method stub
 		return this.points;
 	}
+
 	@Override
 	public void setP(String P) {
 		// TODO Auto-generated method stub
-		this.points=P;
+		this.points = P;
 	}
 
 }

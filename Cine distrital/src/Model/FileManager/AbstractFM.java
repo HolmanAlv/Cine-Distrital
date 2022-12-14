@@ -1,4 +1,4 @@
-package Modelo.FileManager;
+package Model.FileManager;
 
 public interface AbstractFM {
 
