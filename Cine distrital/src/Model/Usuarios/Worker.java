@@ -13,8 +13,8 @@ public class Worker implements AbstractUser {
 			System.out.println(info[3] + " no es un lugar de trabajo valido");
 		} catch (Exception e) {
 			this.id = info[0];
-			this.name = info[1];
-			this.role = info[2];
+			this.role = info[1];
+			this.name = info[2];
 			this.workplace = info[3];
 		}
 

@@ -2,7 +2,6 @@ package Model.Usuarios;
 
 public class User implements AbstractUser {
 	private String id;
-	private String name;
 	private String points;
 	private String role;
 
@@ -13,8 +12,7 @@ public class User implements AbstractUser {
 			System.out.println(info[3] + " no es un numero de puntos valido");
 		}
 		this.id = info[0];
-		this.name = info[1];
-		this.role = info[2];
+		this.role = "customer";
 		this.points = info[3];
 	}
 
@@ -27,7 +25,7 @@ public class User implements AbstractUser {
 	@Override
 	public String getname() {
 		// TODO Auto-generated method stub
-		return name;
+		return role;
 	}
 
 	public int getpoints() {
@@ -49,7 +47,7 @@ public class User implements AbstractUser {
 	@Override
 	public void setname(String name) {
 		// TODO Auto-generated method stub
-		this.name = name;
+		// Metodo vacio
 	}
 
 	@Override

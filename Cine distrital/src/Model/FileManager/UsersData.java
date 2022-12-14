@@ -4,8 +4,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+
 import java.util.ArrayList;
 import java.util.Properties;
+
 import Model.Usuarios.AbstractUser;
 
 public class UsersData implements AbstractData {
@@ -28,16 +30,14 @@ public class UsersData implements AbstractData {
 
 	public String[] Getinfo(String code) throws IOException {
 		FileReader Rw = new FileReader("src/Users/RegisteredUsers.properties");
-		String[] info = new String[5];
+		String[] info = new String[4];
 		Prop.load(Rw);
-		if (Prop.getProperty(code) != null) {
+		if (Prop.getProperty(code) == null) {
 			return new String[0];
 		}
 		info[0] = code;
 		info[1] = Prop.getProperty(code);
-		for (int i = 2; i < 5; i++) {
-			info[i] = Prop.getProperty(code + "." + i);
-		}
+		info[3] = Prop.getProperty(code + ".1");
 		return info;
 
 	}
@@ -50,9 +50,7 @@ public class UsersData implements AbstractData {
 		Prop.load(Rw);
 		FileWriter Fw = new FileWriter("src/Users/RegisteredUsers.properties");
 		Prop.setProperty(user[0], user[1]);
-		for (int i = 2; i < 4; i++) {
-			Prop.setProperty(user[0] + "." + i, user[i]);
-		}
+		Prop.setProperty(user[0] + ".1", user[3]);
 		Prop.store(Fw, "");
 	}
 }

@@ -1,6 +1,7 @@
 package Model.FileManager;
 
 import java.io.IOException;
+
 import Model.Usuarios.AbstractUser;
 
 public class FM {
@@ -33,8 +34,8 @@ public class FM {
 	public void RecordProfile(AbstractUser a) {
 		String[] data = new String[4];
 		data[0] = a.getid();
-		data[1] = a.getname();
-		data[2] = a.getrole();
+		data[1] = a.getrole();
+		data[2] = a.getname();
 		data[3] = a.getP();
 		try {
 			this.Profile.RecordProfile(data);
