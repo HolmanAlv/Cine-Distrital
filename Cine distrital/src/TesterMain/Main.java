@@ -2,11 +2,11 @@ package TesterMain;
 
 import java.io.FileNotFoundException;
 
-import Controlador.Logearse;
+import Controller.Logearse;
 import Model.FileManager.*;
 import Model.Usuarios.User;
 import Model.Usuarios.Worker;
-import Vista.Login;
+import View.Login;
 
 public class Main {
 
