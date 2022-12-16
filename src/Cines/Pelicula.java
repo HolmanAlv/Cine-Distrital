@@ -8,7 +8,9 @@ package Cines;
  *
  * @author rdmon
  */
+
+import java.util.Date;
+
 public class Pelicula {
-    //no puse nada por que veo que tiene muchos atributos tal ves no necesitemos tantos
 	String nombrepelicula;
 }
