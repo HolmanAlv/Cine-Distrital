@@ -1,7 +1,10 @@
 package Model.FileManager;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import Cines.Funcion;
+import Cines.Multiplex;
 import Model.Usuarios.AbstractUser;
 
 public class FM {
@@ -44,5 +47,37 @@ public class FM {
 			e.printStackTrace();
 		}
 	}
+	public String[] getPeliculas() {
+		MoviesData Moviesearcher=new MoviesData();
+		try {
+			
+			return Moviesearcher.GetsubjectsList();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new String[0];
+	}
+	public String[] getMultiplexList() {
+		MultiplexData Multiplexsearcher=new MultiplexData();
+		try {
+			return Multiplexsearcher.GetsubjectsList();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new String[0];
+	
+	}
+	public ArrayList<Funcion> getTomorrowFunctions(String Multiplex) {
+		MultiplexData FunctionSearcher=new MultiplexData();
+		try {
+			return FunctionSearcher.GetRequiredFunctions(Multiplex);
+		} catch (IOException  | NullPointerException e) {
+			// TODO Auto-generated catch block
+			return new ArrayList<Funcion>();
+		}
+	}
+	
 
 }

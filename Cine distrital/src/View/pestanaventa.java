@@ -37,7 +37,7 @@ public class pestanaventa extends JFrame {
 	public JButton PA;
 	public JPanel panel_1;
 	public JLabel Distribucionad;
-	public JPanel panel_2;
+	public JPanel board;
 	public JLabel lblSeleccionarSnacks;
 	public JLabel image2;
 	public JLabel image3;
@@ -169,11 +169,11 @@ public class pestanaventa extends JFrame {
 		Distribucionad.setBounds(143, 28, 166, 30);
 		panel_1.add(Distribucionad);
 
-		panel_2 = new JPanel();
-		panel_2.setBackground(Color.GRAY);
-		panel_2.setBounds(10, 68, 452, 200);
-		panel_1.add(panel_2);
-		panel_2.setLayout(new GridLayout(1, 0, 0, 0));
+		board = new JPanel();
+		board.setBackground(Color.GRAY);
+		board.setBounds(10, 68, 452, 200);
+		panel_1.add(board);
+		board.setLayout(new GridLayout(1, 0, 0, 0));
 
 		lblSeleccionarSnacks = new JLabel("Seleccionar Snacks");
 		lblSeleccionarSnacks.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -183,13 +183,13 @@ public class pestanaventa extends JFrame {
 		image2 = new JLabel("");
 		image2.setBounds(166, 359, 65, 50);
 		panel_1.add(image2);
-		Image palomitas = new ImageIcon(this.getClass().getResource("/palomitas2.png")).getImage();
+		Image palomitas = new ImageIcon(this.getClass().getResource("/imag/palomitas2.png")).getImage();
 		image2.setIcon(new ImageIcon(palomitas));
 
 		image3 = new JLabel("");
 		image3.setBounds(316, 355, 39, 55);
 		panel_1.add(image3);
-		Image sudan = new ImageIcon(this.getClass().getResource("/sudan1.png")).getImage();
+		Image sudan = new ImageIcon(this.getClass().getResource("/imag/sudan1.png")).getImage();
 		image3.setIcon(new ImageIcon(sudan));
 		plus1 = new JButton("+");
 		plus1.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -236,7 +236,7 @@ public class pestanaventa extends JFrame {
 		image1 = new JLabel("");
 		image1.setBounds(26, 355, 65, 54);
 		panel_1.add(image1);
-		Image hot = new ImageIcon(this.getClass().getResource("/jotoperro1.png")).getImage();
+		Image hot = new ImageIcon(this.getClass().getResource("/imag/jotoperro1.png")).getImage();
 		image1.setIcon(new ImageIcon(hot));
 
 	}

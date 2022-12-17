@@ -1,10 +1,16 @@
 package Controller;
 
+import java.awt.Color;
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 
+import Cines.Funcion;
+
+import java.awt.GridLayout;
 import Model.FileManager.FM;
 import Model.Usuarios.User;
 import Model.Ventas.Preventa;
@@ -15,13 +21,17 @@ public class Ventas implements ActionListener, ItemListener {
 	FM manager;
 	User AU;
 	Preventa registro;
+	Seat[][] sillas;
+	ArrayList<Funcion> funciones;
 	final int Addtotalsnacks = 1;
 	final int Subtotalsnacks = 2;
 	final int Addtotaltickets = 3;
 	final int Subtotaltickets = 4;
 
 	public Ventas(pestanaventa vista) {
+		
 		this.vista = vista;
+		this.manager = new FM();
 		this.vista.PA.addActionListener(this);
 		this.vista.min1.addActionListener(this);
 		this.vista.min2.addActionListener(this);
@@ -34,14 +44,38 @@ public class Ventas implements ActionListener, ItemListener {
 		this.vista.pelicula.addItemListener(this);
 		this.vista.horario.addItemListener(this);
 		this.vista.testbutton.addActionListener(this);
-		this.manager = new FM();
+		//this.FillSeatsSpace();
+		
 		registro = new Preventa();
+	
 	}
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		// TODO Auto-generated method stub
+if(e.getSource()==this.vista.multiplex) {
+	this.updatepelicula();
+}
 
+if(e.getSource()==this.vista.pelicula) {
+	try {
+	this.updateFunciones((String)this.vista.multiplex.getSelectedItem(),(String)this.vista.pelicula.getSelectedItem());
+	}catch(NullPointerException a) {
+	a.printStackTrace();
+	}
+}
+if(e.getSource()==this.vista.horario) {
+	Funcion objetivo = new Funcion();
+	for(int i=0;i<this.funciones.size();i++) {
+		if(this.funciones.get(i).getHora().compareTo((String)this.vista.horario.getSelectedItem())==0) {
+			objetivo=this.funciones.get(i);
+		}
+}
+	
+	this.FillSeatsSpace(objetivo);
+	
+	
+}
 	}
 
 	@Override
@@ -53,6 +87,7 @@ public class Ventas implements ActionListener, ItemListener {
 			AU = new User(this.manager.getprofile(this.vista.cedulaT.getText()));
 			this.vista.Puntos.setText(this.AU.getpoints() + "");
 			this.vista.PA.setEnabled(false);
+			this.updatemultiplex();
 
 		}
 		if (e.getSource() == this.vista.plus1)// Compra de Snacks
@@ -129,6 +164,14 @@ public class Ventas implements ActionListener, ItemListener {
 		if (e.getSource() == this.vista.testbutton) {
 			this.registro.AddTickets(1);
 		}
+	/*for(int i=0;i<this.sillas.length;i++) {
+		if(e.getSource()==this.sillas[i]) {
+			this.sillas[i].Cambiar_estado_ocupacion();
+			this.sillas[i].ActualizarBoton();
+			//if(this.sillas[i].get)
+			this.registro.AddTickets(1);
+		}
+	}*/
 		Totalmod();
 	}
 
@@ -137,4 +180,43 @@ public class Ventas implements ActionListener, ItemListener {
 		this.vista.SDinero.setText(this.registro.getTotalSnacks() + "");
 		this.vista.Total.setText(this.registro.getTotal() + "");
 	}
+	private void FillSeatsSpace(Funcion nueva) {
+        this.sillas=nueva.GenerarMatrizBotones();
+		GridLayout rejilla=new GridLayout(10,6);
+		this.vista.board.setLayout(rejilla);
+		for(int i=0;i<this.sillas.length;i++) {
+			for(int j=0;j<this.sillas[0].length;j++) {
+			this.sillas[i][j].addActionListener(this);
+			this.vista.board.add(this.sillas[i][j]);
+			}
+		}
+		this.vista.board.repaint();
+	}
+	private void updatemultiplex() {
+		String[] multiplexlist=manager.getMultiplexList();
+		for(int i=0;i<multiplexlist.length;i++) {
+			this.vista.multiplex.addItem(multiplexlist[i]);
+		}
+	}
+	private void updatepelicula() {
+		this.vista.pelicula.removeAllItems();
+		String[] movielist=manager.getPeliculas();
+		for(int i=0;i<movielist.length;i++) {
+			this.vista.pelicula.addItem(movielist[i]);
+			System.out.println(movielist[i]);
+		}
+	}
+	private void updateFunciones(String multiplex,String pelicula) {
+		if(pelicula==null) {
+			return;
+		}
+		this.vista.horario.removeAllItems();
+	 funciones=manager.getTomorrowFunctions(multiplex);
+		for(int i=0;i<funciones.size();i++) {
+			if(funciones.get(i).getMovie().getNombrepelicula().compareTo(pelicula)==0) {
+			this.vista.horario.addItem(funciones.get(i).getHora());
+			}
+		}
+	}
+	
 }

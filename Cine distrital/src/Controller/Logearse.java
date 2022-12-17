@@ -15,11 +15,12 @@ private FM manager;
 public Logearse(Login win) {
 	this.manager=new FM();
 	this.win=win;
-	win.Login.addActionListener(this);
+	this.win.Login.addActionListener(this);
 	
 }
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
 		// TODO Auto-generated method stub
 String[] profile;
 		if(e.getSource()==win.Login) {

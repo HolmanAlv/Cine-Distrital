@@ -10,4 +10,7 @@ public interface AbstractData {
 	public boolean Check(String code) throws IOException;
 
 	public void RecordProfile(String[] user) throws IOException;
+	
+	public String[] GetsubjectsList() throws IOException;
+	
 }

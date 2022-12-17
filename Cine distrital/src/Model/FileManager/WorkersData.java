@@ -79,4 +79,10 @@ public class WorkersData implements AbstractData {
 		}
 	}
 
+	@Override
+	public String[] GetsubjectsList() throws IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

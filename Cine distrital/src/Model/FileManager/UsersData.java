@@ -53,4 +53,10 @@ public class UsersData implements AbstractData {
 		Prop.setProperty(user[0] + ".1", user[3]);
 		Prop.store(Fw, "");
 	}
+
+	@Override
+	public String[] GetsubjectsList() throws IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
