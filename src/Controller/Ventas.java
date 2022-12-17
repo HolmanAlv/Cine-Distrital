@@ -8,6 +8,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import Cines.Funcion;
 
 import java.awt.GridLayout;
@@ -163,7 +165,8 @@ if(e.getSource()==this.vista.horario) {
 			}
 		}
 		if (e.getSource() == this.vista.testbutton) {
-			this.registro.AddTickets(1);
+			JOptionPane.showMessageDialog(null,"Recuerda agradecerle al cliente por su compra");
+			this.vista.dispose();
 		}
 		if(e.getSource()==this.vista.discount) {
        int puntos=AU.getpoints()-registro.descuento(AU.getpoints());

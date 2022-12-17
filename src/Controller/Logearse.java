@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import Model.FileManager.FM;
 import View.Login;
+import View.User;
 import View.pestanaventa;
 
 public class Logearse implements ActionListener {
@@ -32,6 +33,9 @@ String[] profile;
 			if(profile[1].compareTo("customer")==0) {
 				//Abrir interfaz del usuario y cerrar el login
 				JOptionPane.showMessageDialog(null, "Eres un usuario");
+				User usuario=new User();
+				UserInterface ctrl=new UserInterface(usuario,profile);
+				usuario.setVisible(true);
 				win.setVisible(false);
 				return;
 			}else {
